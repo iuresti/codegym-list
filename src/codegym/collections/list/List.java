@@ -38,4 +38,6 @@ public interface List <H> {
      * @return El número de elementos válidos de la lista
      */
     int size();
+
+    Iterator <H> iterator();
 }

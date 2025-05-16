@@ -43,6 +43,11 @@ public class ArrayList <G> implements List<G> {
         return size;
     }
 
+    @Override
+    public Iterator<G> iterator() {
+        return new ArrayListIterator();
+    }
+
     @SuppressWarnings("unchecked")
     private void increaseArrayCapacity(){
         G []newArray = (G[])new Object[(int)(array.length * 1.5)]; //cast
@@ -50,5 +55,20 @@ public class ArrayList <G> implements List<G> {
         System.arraycopy(array, 0, newArray, 0, size);
 
         array = newArray;
+    }
+
+    private class ArrayListIterator implements Iterator<G>{
+        private int currentIndex;
+
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        @Override
+        public G next() {
+            return array[currentIndex++];
+        }
     }
 }

@@ -87,10 +87,34 @@ public class LinkedList<T> implements List<T> {
         return size;
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator();
+    }
+
     static private class Node<G> {
         Node<G> prev;
         G data;
         Node<G> next;
+    }
+
+    private class LinkedListIterator implements Iterator<T> {
+
+        Node<T> currentNode = head;
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next() {
+            T data = currentNode.data;
+
+            currentNode = currentNode.next;
+
+            return data;
+        }
     }
 
 
